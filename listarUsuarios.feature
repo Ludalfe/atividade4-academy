@@ -1,9 +1,6 @@
 Feature: Listar usuario
-Background: Base url
-    # Configuração do baseUrl da API
-    Given url "https://crud-api-academy.herokuapp.com/api/v1"
-
 Scenario: Deve ser possível listar os usuários do sistema 
+    Given url baseUrl
     Given path "users"
     When method get
     Then status 200

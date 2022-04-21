@@ -1,11 +1,8 @@
 Feature: Cadastra usuario
-Background: Base url
-    # Configuração do baseUrl da API
-    Given url "https://crud-api-academy.herokuapp.com/api/v1"
-
 Scenario: Deve ser possivel cadastrar um usuario
     * def aleatorio = '' + Math.floor(Math.random() * 999)    
     * def mailEaleatorio = "nome." + aleatorio + "@mail.com"
+    Given url baseUrl
     Given path "users"
     And request
     """
@@ -14,9 +11,7 @@ Scenario: Deve ser possivel cadastrar um usuario
   "email": "#(mailEaleatorio)"
 }
     """
-    # Configuração do verbo HTTP
     When method post
-    # Teste que verifica se o response code é igual a 200
     Then status 201
     And match response == "#object"
     * def idCriado = response.id
