@@ -14,10 +14,18 @@ Scenario: Deve ser possivel pesquisar por um usuario
     When method post
     Then status 201
     * def emailCriado = response.email
-    * print (emailCriado)
-#Teste buscar usuario
+    * def nomeCriado = response.name
     Given path "search"
     And request { value: "#(emailCriado)" }
+    When method get
+    Then status 200
+    And match response == "#array"
+
+    #busca por nome
+    Given path "users"
+    When method post
+    Given path "search"
+    And request { value: "#(nomeCriado)" }
     When method get
     Then status 200
     And match response == "#array"

@@ -15,7 +15,6 @@ Scenario: Deve ser possivel buscar um usuario
     Then status 201
     * def idCriado = response.id
     * print (idCriado)
-#Teste buscar usuario
     Given path "users/"+idCriado
     When method get
     Then status 200
